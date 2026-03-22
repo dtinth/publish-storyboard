@@ -1,0 +1,9 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npx 'github:dtinth/publish-storyboard#main'
