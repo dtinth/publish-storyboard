@@ -116,7 +116,7 @@ for (const dir of storyboardDirs) {
     continue;
   }
 
-  const ndjsonKey = `storyboards/${GITHUB_REF_NAME}/${storyboardName}.ndjson`;
+  const ndjsonKey = `storyboards/${GITHUB_REF_NAME.replaceAll("/", "-")}/${storyboardName}.ndjson`;
   const rewritten = rewrittenLines.join("\n") + "\n";
   await upload(ndjsonKey, rewritten, "application/x-ndjson");
 
