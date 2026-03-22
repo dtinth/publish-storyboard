@@ -5,5 +5,7 @@ on:
 jobs:
   example:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - run: npx 'github:dtinth/publish-storyboard#main'
