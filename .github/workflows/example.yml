@@ -8,4 +8,4 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - run: npx 'github:dtinth/publish-storyboard#main'
+      - run: npx 'github:dtinth/publish-storyboard#main' --input=fixture
