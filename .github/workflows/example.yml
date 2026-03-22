@@ -8,4 +8,5 @@ jobs:
     permissions:
       id-token: write
     steps:
+      - uses: actions/checkout@v6
       - run: npx 'github:dtinth/publish-storyboard#main' --input=fixture
