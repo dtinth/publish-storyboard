@@ -34,6 +34,9 @@ const app = new Elysia()
     if (!repository) {
       return status(403, "Token missing repository claim");
     }
+    if (!repository.startsWith("dtinth/")) {
+      return status(403, "Repository not allowed");
+    }
 
     const path = query.path;
     if (!path) {
