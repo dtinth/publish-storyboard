@@ -1,0 +1,9 @@
+name: Publish Storyboard
+description: Publish storyboard files from test-storyboards
+
+runs:
+  using: composite
+  steps:
+    - name: Publish storyboards
+      shell: bash
+      run: npx 'github:dtinth/publish-storyboard#main' --input=test-storyboards
