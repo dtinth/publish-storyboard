@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-import { parseArgs } from "node:util";
-import { readFile, readdir, appendFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { join, basename } from "node:path";
+import { appendFile, readFile, readdir } from "node:fs/promises";
+import { basename, join } from "node:path";
+import { parseArgs } from "node:util";
 
 const { values } = parseArgs({
   options: { input: { type: "string" } },
@@ -20,7 +20,7 @@ const {
 
 if (!ACTIONS_ID_TOKEN_REQUEST_URL || !ACTIONS_ID_TOKEN_REQUEST_TOKEN) {
   throw new Error(
-    "ACTIONS_ID_TOKEN_REQUEST_URL and ACTIONS_ID_TOKEN_REQUEST_TOKEN must be set"
+    "ACTIONS_ID_TOKEN_REQUEST_URL and ACTIONS_ID_TOKEN_REQUEST_TOKEN must be set",
   );
 }
 
@@ -32,7 +32,7 @@ if (!tokenResponse.ok) {
 }
 const { value: oidcToken } = await tokenResponse.json();
 const tokenPayload = JSON.parse(
-  Buffer.from(oidcToken.split(".")[1], "base64url").toString()
+  Buffer.from(oidcToken.split(".")[1], "base64url").toString(),
 );
 const repository = tokenPayload.repository; // "owner/repo"
 const [owner, repo] = repository.split("/");
@@ -104,7 +104,7 @@ for (const dir of storyboardDirs) {
         JSON.stringify({
           ...entry,
           screenshot: { ...entry.screenshot, url: `../../images/${hash}.png` },
-        })
+        }),
       );
     } else {
       rewrittenLines.push(line);
@@ -128,6 +128,6 @@ for (const dir of storyboardDirs) {
 if (GITHUB_STEP_SUMMARY && summaryLines.length > 0) {
   await appendFile(
     GITHUB_STEP_SUMMARY,
-    `## Storyboards\n\n${summaryLines.join("\n")}\n`
+    `## 🎬 Storyboards\n\n${summaryLines.join("\n")}\n`,
   );
 }
