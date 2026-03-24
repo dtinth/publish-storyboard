@@ -27,8 +27,8 @@ jobs:
     permissions:
       id-token: write
     steps:
-      # After storyboard is generated, run the publish-storyboard script
-      - run: npx 'github:dtinth/publish-storyboard#main' --input=test-storyboards
+      # After storyboard is generated, run the publish-storyboard action
+      - uses: dtinth/publish-storyboard@main
 ```
 
 No secrets or keys needed — authentication is handled via GitHub Actions OIDC.
